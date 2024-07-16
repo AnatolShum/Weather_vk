@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  Weather_vk
+
+  Created by Anatolii Shumov on 16.07.2024.
+  
+*/
+
+"sunny" = "Sunny";
+"partlyCloudy" = "Partly Cloudy";
+"cloudy" = "Cloudy";
+"rainy" = "Rainy";
+"drizzle" = "Drizzle";
+"thunderstorm" = "Thunderstorm";
+"snowy" = "Snowy";
+"windy" = "Windy";
+"foggy" = "Foggy";
