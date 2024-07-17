@@ -14,7 +14,6 @@ class WeatherConditionCell: UICollectionViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
-        image.translatesAutoresizingMaskIntoConstraints = false
         image.tintColor = UIColor(named: "cardBlue")
         return image
     }()
@@ -23,10 +22,18 @@ class WeatherConditionCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .headline)
         label.textAlignment = .center
-        label.textColor = .blue.withAlphaComponent(0.7)
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "cardBlue")
         return label
+    }()
+    
+    private let vStack: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.spacing = 10
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        return stack
     }()
     
     override init(frame: CGRect) {
@@ -45,19 +52,18 @@ class WeatherConditionCell: UICollectionViewCell {
     }
     
     private func createUI() {
-        addSubview(conditionImage)
-        addSubview(conditionTitle)
+        vStack.addArrangedSubview(conditionImage)
+        vStack.addArrangedSubview(conditionTitle)
+        
+        addSubview(vStack)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            conditionImage.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            conditionImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            conditionImage.heightAnchor.constraint(equalToConstant: 44),
-            conditionImage.widthAnchor.constraint(equalTo: conditionImage.heightAnchor, multiplier: 1),
-            conditionTitle.topAnchor.constraint(equalTo: conditionImage.bottomAnchor, constant: 8),
-            conditionTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
-            conditionTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+            vStack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            vStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            vStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
     }
     

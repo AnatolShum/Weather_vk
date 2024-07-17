@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C5487D82C46B583008E54F8 /* CollectionViewDataSouce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5487D72C46B583008E54F8 /* CollectionViewDataSouce.swift */; };
 		3C5487DA2C46B59D008E54F8 /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5487D92C46B59D008E54F8 /* CollectionViewDelegate.swift */; };
-		3C5487DF2C46B78E008E54F8 /* Conditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5487DE2C46B78E008E54F8 /* Conditions.swift */; };
+		3C5487DF2C46B78E008E54F8 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5487DE2C46B78E008E54F8 /* Condition.swift */; };
 		3C5487E12C46B7F5008E54F8 /* WeatherConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5487E02C46B7F5008E54F8 /* WeatherConditionCell.swift */; };
 		3C5487E62C46D238008E54F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C5487E42C46D238008E54F8 /* Localizable.strings */; };
 		3C5487EA2C46D7B7008E54F8 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5487E92C46D7B7008E54F8 /* Localized.swift */; };
@@ -22,7 +22,7 @@
 /* Begin PBXFileReference section */
 		3C5487D72C46B583008E54F8 /* CollectionViewDataSouce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSouce.swift; sourceTree = "<group>"; };
 		3C5487D92C46B59D008E54F8 /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDelegate.swift; sourceTree = "<group>"; };
-		3C5487DE2C46B78E008E54F8 /* Conditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conditions.swift; sourceTree = "<group>"; };
+		3C5487DE2C46B78E008E54F8 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		3C5487E02C46B7F5008E54F8 /* WeatherConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConditionCell.swift; sourceTree = "<group>"; };
 		3C5487E52C46D238008E54F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3C5487E72C46D282008E54F8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 		3C5487DD2C46B738008E54F8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3C5487DE2C46B78E008E54F8 /* Conditions.swift */,
+				3C5487DE2C46B78E008E54F8 /* Condition.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 				3C5487E12C46B7F5008E54F8 /* WeatherConditionCell.swift in Sources */,
 				3C5487EA2C46D7B7008E54F8 /* Localized.swift in Sources */,
 				3C6307C82C46A98300B79C51 /* MainController.swift in Sources */,
-				3C5487DF2C46B78E008E54F8 /* Conditions.swift in Sources */,
+				3C5487DF2C46B78E008E54F8 /* Condition.swift in Sources */,
 				3C6307C42C46A98300B79C51 /* AppDelegate.swift in Sources */,
 				3C5487D82C46B583008E54F8 /* CollectionViewDataSouce.swift in Sources */,
 				3C6307C62C46A98300B79C51 /* SceneDelegate.swift in Sources */,
@@ -382,9 +382,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anatolshum.Weather-vk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -410,9 +414,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anatolshum.Weather-vk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

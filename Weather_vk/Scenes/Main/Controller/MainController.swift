@@ -8,6 +8,18 @@
 import UIKit
 
 class MainController: UIViewController {
+    let weatherConditions: [Condition] = [
+        Condition(name: "sunny", iconName: "sun.max", imageName: ""),
+        Condition(name: "partlyCloudy", iconName: "cloud.sun", imageName: ""),
+        Condition(name: "cloudy", iconName: "cloud", imageName: ""),
+        Condition(name: "rainy", iconName: "cloud.rain", imageName: ""),
+        Condition(name: "drizzle", iconName: "cloud.drizzle", imageName: ""),
+        Condition(name: "thunderstorm", iconName: "cloud.bolt.rain", imageName: ""),
+        Condition(name: "snowy", iconName: "cloud.snow", imageName: ""),
+        Condition(name: "windy", iconName: "wind", imageName: ""),
+        Condition(name: "foggy", iconName: "cloud.fog", imageName: ""),
+    ]
+    
     var collectionView: UICollectionView
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -62,8 +74,9 @@ class MainController: UIViewController {
     }
     
     private func randomItem() {
-        guard let randomCondition = WetherConditions.allCases.randomElement() else { return }
-        guard let index = WetherConditions.allCases.firstIndex(of: randomCondition) else { return }
+        guard let randomCondition = weatherConditions.randomElement() else { return }
+        let index =  weatherConditions.firstIndex { $0 == randomCondition }
+        guard let index else { return }
         
         let indexPath = IndexPath(item: index, section: 0)
         
@@ -71,4 +84,3 @@ class MainController: UIViewController {
     }
     
 }
-

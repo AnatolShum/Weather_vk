@@ -12,7 +12,6 @@ extension MainController: UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath) as! WeatherConditionCell
         cell.animate()
         
-        let item = WetherConditions.allCases[indexPath.item]
-        print(item)
+        let item = weatherConditions[indexPath.item]
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 extension MainController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return WetherConditions.allCases.count
+        return weatherConditions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -17,10 +17,10 @@ extension MainController: UICollectionViewDataSource {
             withReuseIdentifier: WeatherConditionCell.reuseIdentifier,
             for: indexPath) as! WeatherConditionCell
         
-        let condition = WetherConditions.allCases[indexPath.row]
-        let image = UIImage(systemName: condition.imageName)
+        let condition = weatherConditions[indexPath.row]
+        let image = UIImage(systemName: condition.iconName)
        
-        cell.configureCell(image: image, title: condition.title)
+        cell.configureCell(image: image, title: condition.name)
        
         return cell
     }
