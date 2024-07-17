@@ -9,18 +9,19 @@ import UIKit
 
 class MainController: UIViewController {
     let weatherConditions: [Condition] = [
-        Condition(name: "sunny", iconName: "sun.max", imageName: ""),
-        Condition(name: "partlyCloudy", iconName: "cloud.sun", imageName: ""),
-        Condition(name: "cloudy", iconName: "cloud", imageName: ""),
-        Condition(name: "rainy", iconName: "cloud.rain", imageName: ""),
-        Condition(name: "drizzle", iconName: "cloud.drizzle", imageName: ""),
-        Condition(name: "thunderstorm", iconName: "cloud.bolt.rain", imageName: ""),
-        Condition(name: "snowy", iconName: "cloud.snow", imageName: ""),
-        Condition(name: "windy", iconName: "wind", imageName: ""),
-        Condition(name: "foggy", iconName: "cloud.fog", imageName: ""),
+        Condition(name: "sunny", iconName: "sun.max", imageName: "sunny"),
+        Condition(name: "partlyCloudy", iconName: "cloud.sun", imageName: "partlyCloudy"),
+        Condition(name: "cloudy", iconName: "cloud", imageName: "cloudy"),
+        Condition(name: "rainy", iconName: "cloud.rain", imageName: "rainy"),
+        Condition(name: "drizzle", iconName: "cloud.drizzle", imageName: "drizzle"),
+        Condition(name: "thunderstorm", iconName: "cloud.bolt.rain", imageName: "thunderstorm"),
+        Condition(name: "snowy", iconName: "cloud.snow", imageName: "snowy"),
+        Condition(name: "windy", iconName: "wind", imageName: "windy"),
+        Condition(name: "foggy", iconName: "cloud.fog", imageName: "foggy"),
     ]
     
     var collectionView: UICollectionView
+    var conditionalImageView: ConditionImageView
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let layout = UICollectionViewFlowLayout()
@@ -29,6 +30,7 @@ class MainController: UIViewController {
         layout.itemSize = CGSize(width: 140, height: 92)
         
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        self.conditionalImageView = ConditionImageView()
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -41,6 +43,7 @@ class MainController: UIViewController {
         super.viewDidLoad()
         
         createUI()
+        setConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,8 +53,10 @@ class MainController: UIViewController {
     }
     
     private func createUI() {
-        view.backgroundColor = .white
-        collectionView.backgroundColor = .systemGray5
+        conditionalImageView.frame = view.bounds
+        view = conditionalImageView
+        
+        collectionView.backgroundColor = .systemGray6.withAlphaComponent(0.2)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -64,7 +69,9 @@ class MainController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(collectionView)
-        
+    }
+    
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -75,12 +82,43 @@ class MainController: UIViewController {
     
     private func randomItem() {
         guard let randomCondition = weatherConditions.randomElement() else { return }
-        let index =  weatherConditions.firstIndex { $0 == randomCondition }
-        guard let index else { return }
+        let index =  getIndex(with: randomCondition)
         
-        let indexPath = IndexPath(item: index, section: 0)
+        let indexPath = getIndexPath(with: index)
         
+        let image = getImage(with: indexPath)
+        conditionalImageView.setImage(with: image)
+        
+        scrollToItem(with: indexPath)
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+    }
+    
+    private func getIndex(with condition: Condition) -> Int? {
+        return weatherConditions.firstIndex { $0 == condition }
+    }
+    
+    private func getIndexPath(with index: Int?) -> IndexPath? {
+        guard let index else { return nil }
+        return IndexPath(item: index, section: 0)
+    }
+    
+    private func scrollToItem(with indexPath: IndexPath?) {
+        guard let indexPath else { return }
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    private func getImage(with indexPath: IndexPath?) -> UIImage? {
+        guard let indexPath else { return nil }
+        let item = weatherConditions[indexPath.item]
+        let imageName = item.imageName
+        return UIImage(named: imageName)
+    }
+    
+    func nextCondition(_ indexPath: IndexPath) {
+        let image = getImage(with: indexPath)
+        conditionalImageView.setImage(with: image)
+        
+        scrollToItem(with: indexPath)
     }
     
 }

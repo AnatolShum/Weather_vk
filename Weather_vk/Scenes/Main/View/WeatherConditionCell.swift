@@ -36,12 +36,24 @@ class WeatherConditionCell: UICollectionViewCell {
         return stack
     }()
     
+    override var isSelected: Bool {
+        didSet {
+            UIView.animate(withDuration: 1) {
+                if self.isSelected {
+                    self.backgroundColor = .black.withAlphaComponent(0.7)
+                } else {
+                    self.backgroundColor = .black.withAlphaComponent(0.5)
+                }
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.layer.cornerRadius = 14
         self.clipsToBounds = true
-        self.backgroundColor = .cyan.withAlphaComponent(0.3)
+        self.backgroundColor = .black.withAlphaComponent(0.5)
         
         createUI()
         setConstraints()
@@ -85,5 +97,5 @@ class WeatherConditionCell: UICollectionViewCell {
             self.transform = CGAffineTransform.identity
         }
     }
-   
+    
 }
