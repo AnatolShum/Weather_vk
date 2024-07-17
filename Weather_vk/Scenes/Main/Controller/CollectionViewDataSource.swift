@@ -1,5 +1,5 @@
 //
-//  CollectionViewDataSouce.swift
+//  CollectionViewDataSource.swift
 //  Weather_vk
 //
 //  Created by Anatolii Shumov on 16.07.2024.
@@ -19,9 +19,9 @@ extension MainController: UICollectionViewDataSource {
         
         let condition = weatherConditions[indexPath.row]
         let image = UIImage(systemName: condition.iconName)
-       
+        
         cell.configureCell(image: image, title: condition.name)
-       
+        
         return cell
     }
 }
